@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your Pictures</h1>
+
+<% @pictures.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |picture| %>
+      <div class="col-md-4">
+        <%= image_tag picture.picture_url(:thumb) if picture.picture? %>
+        <h4><%= link_to picture.name, picture %></h4>
+        <%= picture.description %>
+        <%= picture.datetime %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+ 
+ <%= link_to 'New Picture', new_picture_path %>
